@@ -114,8 +114,5 @@ int main() {
 	BatteryIndicator batterychargingCheck1(1.0, 4, 21);
 	BatteryChargingCheck battery_charging_check;
 	assert(battery_charging_check.batteryRequirements_For_Charging() == true);
-	BatteryIndicator batterychargingCheck2(1.0, 4, 21);
-	assert(battery_charging_check.batteryRequirements_For_Charging() == true);
-
-	system("pause");
+	//system("pause");
 }
