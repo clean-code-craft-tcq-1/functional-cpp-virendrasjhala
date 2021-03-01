@@ -23,9 +23,13 @@ public:
 			cout << "Charge current Rate out of range!\n";
 			return false;
 		}
+		else
+		{
+			return true;
+		}
 	}
 };
-class VoltageIndicator :public BatteryElements
+class VoltageIndicator :public CurrentIndicator, public BatteryElements
 {
 public:
 	static float voltageMinThreshould;
@@ -37,9 +41,13 @@ public:
 			cout << "Charge voltage Rate out of range!\n";
 			return false;
 		}
+		else
+		{
+			return currentStatus();
+		}
 	}
 };
-class TempratureIndicator :public BatteryElements
+class TempratureIndicator :public VoltageIndicator,public BatteryElements
 {
 public:
 	static float tampratureMinThreshould;
@@ -51,13 +59,17 @@ public:
 			cout << "Charge tamperature Rate out of range!\n";
 			return false;
 		}
+		else
+		{
+			return voltageStatus();
+		}
 	}
 };
 class BatteryIndicator:public CurrentIndicator,public VoltageIndicator,public TempratureIndicator
 {
 public:
 	BatteryIndicator() {}
-	BatteryIndicator(float curr, float vol, float temp)
+	BatteryIndicator(float temp, float vol, float curr)
 	{
 		current = curr;
 		voltage = vol;
@@ -71,7 +83,7 @@ public:
 	BatteryChargingCheck() {}
 	bool batteryRequirements_For_Charging()
 	{
-		if (currentStatus() && voltageStatus() && tempratureStatus())
+		if (tempratureStatus())
 		{
 			return true;
 		}
@@ -111,7 +123,7 @@ int main() {
 
 	StatusOfCharge statusofcharge;
 	assert(statusofcharge.StatusOfBatteryCharge(70)==true);
-	BatteryIndicator batterychargingCheck1(1.0, 4, 21);
+	BatteryIndicator batterychargingCheck1(21, 4, 1.0);
 	BatteryChargingCheck battery_charging_check;
 	assert(battery_charging_check.batteryRequirements_For_Charging() == true);
 	//system("pause");
