@@ -63,12 +63,12 @@ BatteryIndicator::BatteryIndicator(float temp, float vol, float curr)
 
 bool wheaterIndicator::wheatherStatus()
 {
-	if (hotWheater < todaysTemperature)
+	if (hotWeather < todaysTemperature)
 	{
 		cout << "Very High Temperature!! charge is not allowed !" << endl;
 		return false;
 	}
-	if (coldWheater > todaysTemperature)
+	if (coldWeather > todaysTemperature)
 	{
 		cout << "Very Low Temperature!! charge is not allowed !" << endl;
 		return false;
@@ -124,6 +124,6 @@ bool StatusOfCharge::StatusOfBatteryCharge(float remainBatteryStatus)
 	int   BatteryChargingCheck::fullBatteryStatus = 100;
 	int   BatteryChargingCheck::lowBatteryStatus = 20;
 	int StatusOfCharge::remainBatteryStatus;
-	float wheaterIndicator::hotWheater = 70;
-	float wheaterIndicator::coldWheater = -50;
+	float wheaterIndicator::hotWeather = 70;
+	float wheaterIndicator::coldWeather = -50;
 	float wheaterIndicator::todaysTemperature ;

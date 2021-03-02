@@ -68,8 +68,8 @@ public:
 class wheaterIndicator :public BatteryIndicator
 {
 public:
-	static float hotWheater;
-	static float coldWheater;
+	static float hotWeather;
+	static float coldWeather;
 	static float todaysTemperature;
 	void TodaysTemperature(float temp);
 	bool wheatherStatus();

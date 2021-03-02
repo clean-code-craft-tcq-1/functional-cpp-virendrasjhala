@@ -16,8 +16,8 @@ int main() {
 	/*-------------------------------------------input parameters----------------------------------------*/
 
 	/* "-----------------------------------------wheather status-----------------------------------------*/
-	wheaterIndicator WheatherHandler;
-    WheatherHandler.TodaysTemperature(setTodaysTemperature);
+	wheaterIndicator WeatherHandler;
+	WeatherHandler.TodaysTemperature(setTodaysTemperature);
 
 	/* "-----------------------------------------battery status------------------------------------------*/
 	StatusOfCharge statusofcharge;
