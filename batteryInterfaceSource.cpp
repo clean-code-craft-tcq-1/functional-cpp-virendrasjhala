@@ -2,8 +2,18 @@
 #include <assert.h>
 #include <iostream>
 #include "batteryInterface.h"
-
+#include <iomanip>
 using namespace std;
+
+void BatterySpecification::BatterySpecificationPrinter()
+{
+	cout << "-------------------------------------------------Battery Specification -------------------------------------------------------" << endl;
+	cout << "    || Wheather status || " << "           ||Battery status || " << "                         ||Battery current/voltage||" << endl;
+	cout << "Temp       "    <<"                        B_Tmptr| "<<"low| "<< "full| "<< "actual| "<<   "      C_Min| "<<"C_Max| "<<"Curr_actual| "<<"V_Min| "<<"V_Max| "<<"Volt_actual| "<<endl;
+	cout << wheaterIndicator::todaysTemperature <<"`C"<< setw(33) << BatteryElements::temprature <<"`C"<<"    "<< BatteryChargingCheck::lowBatteryStatus <<"%"<<"   "<< BatteryChargingCheck::fullBatteryStatus<<"%"<<"   "
+		<< StatusOfCharge::remainBatteryStatus<<"%"<< setw(14)<< CurrentIndicator::currentMinThreshould<<"E"<< "   "<< CurrentIndicator::currentMaxThreshould <<"E"<<"      "<< BatteryElements::current<<"E"<< setw(9) 
+		<< VoltageIndicator::voltageMinThreshould <<"V"<< setw(7) <<VoltageIndicator::vOltageMaxThreshould<<"V" <<"      "<< BatteryElements::voltage<<"V"<<endl;
+}
 
 bool CurrentIndicator::currentStatus()
 {
@@ -50,6 +60,7 @@ BatteryIndicator::BatteryIndicator(float temp, float vol, float curr)
 	voltage = vol;
 	temprature = temp;
 }
+
 bool wheaterIndicator::wheatherStatus()
 {
 	if (hotWheater < todaysTemperature)
@@ -64,25 +75,32 @@ bool wheaterIndicator::wheatherStatus()
 	}
 	return tempratureStatus();
 }
+
 void wheaterIndicator::TodaysTemperature(float temp)
 {
 	todaysTemperature = temp;
 }
+
 bool BatteryChargingCheck::batteryRequirements_For_Charging()
 {
 	wheaterIndicator wheaterHandler;
 	if (wheaterHandler.wheatherStatus())
 		{
+			BatterySpecification::BatterySpecificationPrinter();
 			return true;
+
 		}
 	else
 		{
+			BatterySpecification::BatterySpecificationPrinter();
 			return false;
 		}
+	
 }
 
 bool StatusOfCharge::StatusOfBatteryCharge(float remainBatteryStatus)
 {
+	StatusOfCharge::remainBatteryStatus = remainBatteryStatus;
 	if (remainBatteryStatus < lowBatteryStatus)
 		{
 			cout << "Battery is critical !" << endl;
@@ -100,11 +118,12 @@ bool StatusOfCharge::StatusOfBatteryCharge(float remainBatteryStatus)
 	float VoltageIndicator::vOltageMaxThreshould = 6;
 	float TempratureIndicator::tampratureMinThreshould = -20;
 	float TempratureIndicator::temperatureMaxThreshould = 50;
-	float BatteryElements::temprature = 0;
-	float BatteryElements::voltage = 0;
-	float BatteryElements::current = 0;
+	float BatteryElements::temprature ;
+	float BatteryElements::voltage ;
+	float BatteryElements::current ;
 	int   BatteryChargingCheck::fullBatteryStatus = 100;
 	int   BatteryChargingCheck::lowBatteryStatus = 20;
+	int StatusOfCharge::remainBatteryStatus;
 	float wheaterIndicator::hotWheater = 70;
 	float wheaterIndicator::coldWheater = -50;
-	float wheaterIndicator::todaysTemperature = 0;
+	float wheaterIndicator::todaysTemperature ;

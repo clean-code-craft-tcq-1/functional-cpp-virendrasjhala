@@ -7,16 +7,24 @@ using namespace std;
 
 int main() {
 
-	cout << "--------------------------wheather status-------------------------------------------" << endl;
+	/*-------------------------------------------input parameters----------------------------------------*/
+	float setTodaysTemperature = 23;
+	int   checkStatusofcharge = 70;
+	float checkBatteryTemperature = 21;
+	float checkBatteryVoltage = 4;
+	float checkBatteryCurrent = 1.0;
+	/*-------------------------------------------input parameters----------------------------------------*/
+
+	/* "-----------------------------------------wheather status-----------------------------------------*/
 	wheaterIndicator WheatherHandler;
-    WheatherHandler.TodaysTemperature(20);
+    WheatherHandler.TodaysTemperature(setTodaysTemperature);
 
-	cout << "--------------------------battery status-------------------------------------------" << endl;
+	/* "-----------------------------------------battery status------------------------------------------*/
 	StatusOfCharge statusofcharge;
-	assert(statusofcharge.StatusOfBatteryCharge(70)==true);
+	assert(statusofcharge.StatusOfBatteryCharge(checkStatusofcharge)==true);
 
-	cout << "--------------------------battery Charging conditions check------------------------" << endl;
-	BatteryIndicator batterychargingCheck(21, 4, 1.0);
+	/* "-------------------------------------battery Charging conditions check---------------------------*/
+	BatteryIndicator batterychargingCheck(checkBatteryTemperature, checkBatteryVoltage, checkBatteryCurrent);
 	BatteryChargingCheck battery_charging_check;
 	assert(battery_charging_check.batteryRequirements_For_Charging() == true);
 

@@ -11,7 +11,12 @@ public:
 	static float voltage;
 	static float temprature;
 };
-class CurrentIndicator :public BatteryElements
+class BatterySpecification:public BatteryElements
+{
+public:
+	void BatterySpecificationPrinter();
+};
+class CurrentIndicator :public BatteryElements,public BatterySpecification
 {
 public:
 	static float currentMinThreshould;
@@ -35,7 +40,7 @@ public:
 	bool tempratureStatus();
 	
 };
-class BatteryIndicator :public CurrentIndicator, public VoltageIndicator, public TempratureIndicator
+class BatteryIndicator :public TempratureIndicator
 {
 public:
 	BatteryIndicator() {}
@@ -55,6 +60,7 @@ public:
 class StatusOfCharge:public BatteryChargingCheck
 {
 public:
+	static int remainBatteryStatus;
 	StatusOfCharge() {}
 	bool StatusOfBatteryCharge(float remainBatteryStatus);
 	
