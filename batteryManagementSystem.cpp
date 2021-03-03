@@ -8,20 +8,20 @@ using namespace std;
 int main() {
 
 	/*-------------------------------------------input parameters----------------------------------------*/
-	float setTodaysTemperature = 23;
-	int   checkStatusofcharge = 70;
+	float setTodaysTemperature    = 23;
+	int   checkStatusofcharge     = 70;
 	float checkBatteryTemperature = 21;
-	float checkBatteryVoltage = 4;
-	float checkBatteryCurrent = 1.0;
+	float checkBatteryVoltage     = 4;
+	float checkBatteryCurrent     = 1.0;
 	/*-------------------------------------------input parameters----------------------------------------*/
 
-	/* "-----------------------------------------wheather status-----------------------------------------*/
+	/* "-----------------------------------------weather status-----------------------------------------*/
 	wheaterIndicator WeatherHandler;
 	WeatherHandler.TodaysTemperature(setTodaysTemperature);
 
 	/* "-----------------------------------------battery status------------------------------------------*/
 	StatusOfCharge statusofcharge;
-	assert(statusofcharge.StatusOfBatteryCharge(checkStatusofcharge)==true);
+	assert(statusofcharge.StatusOfBatteryCharge(checkStatusofcharge) == true);
 
 	/* "-------------------------------------battery Charging conditions check---------------------------*/
 	BatteryIndicator batterychargingCheck(checkBatteryTemperature, checkBatteryVoltage, checkBatteryCurrent);

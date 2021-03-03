@@ -10,9 +10,9 @@ void BatterySpecification::BatterySpecificationPrinter()
 	cout << "-------------------------------------------------Battery Specification -------------------------------------------------------" << endl;
 	cout << "    || Wheather status || " << "           ||Battery status || " << "                         ||Battery current/voltage||" << endl;
 	cout << "Temp       "    <<"                        B_Tmptr| "<<"low| "<< "full| "<< "actual| "<<   "      C_Min| "<<"C_Max| "<<"Curr_actual| "<<"V_Min| "<<"V_Max| "<<"Volt_actual| "<<endl;
-	cout << wheaterIndicator::todaysTemperature <<"`C"<< setw(33) << BatteryElements::temprature <<"`C"<<"    "<< BatteryChargingCheck::lowBatteryStatus <<"%"<<"   "<< BatteryChargingCheck::fullBatteryStatus<<"%"<<"   "
-		<< StatusOfCharge::remainBatteryStatus<<"%"<< setw(14)<< CurrentIndicator::currentMinThreshould<<"E"<< "   "<< CurrentIndicator::currentMaxThreshould <<"E"<<"      "<< BatteryElements::current<<"E"<< setw(9) 
-		<< VoltageIndicator::voltageMinThreshould <<"V"<< setw(7) <<VoltageIndicator::vOltageMaxThreshould<<"V" <<"      "<< BatteryElements::voltage<<"V"<<endl;
+	cout << wheaterIndicator::todaysTemperature     <<"`C"<< setw(33) << BatteryElements::temprature            <<"`C"<<"    "  << BatteryChargingCheck::lowBatteryStatus <<"%"<<"   "   << BatteryChargingCheck::fullBatteryStatus <<"%"<<"   "
+		 << StatusOfCharge::remainBatteryStatus     <<"%" << setw(14) << CurrentIndicator::currentMinThreshould <<"E" << "   "  << CurrentIndicator::currentMaxThreshould <<"E"<<"      "<< BatteryElements::current                <<"E"<< setw(9) 
+		 << VoltageIndicator::voltageMinThreshould  <<"V" << setw(7)  << VoltageIndicator::vOltageMaxThreshould <<"V" <<"      "<< BatteryElements::voltage               <<"V"<<endl;
 }
 
 bool CurrentIndicator::currentStatus()
@@ -123,7 +123,7 @@ bool StatusOfCharge::StatusOfBatteryCharge(float remainBatteryStatus)
 	float BatteryElements::current ;
 	int   BatteryChargingCheck::fullBatteryStatus = 100;
 	int   BatteryChargingCheck::lowBatteryStatus = 20;
-	int StatusOfCharge::remainBatteryStatus;
+	int   StatusOfCharge::remainBatteryStatus;
 	float wheaterIndicator::hotWeather = 70;
 	float wheaterIndicator::coldWeather = -50;
 	float wheaterIndicator::todaysTemperature ;
