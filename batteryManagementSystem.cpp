@@ -24,7 +24,7 @@ int main() {
 	assert(statusofcharge.StatusOfBatteryCharge(checkStatusofcharge) == true);
 
 	/* "-------------------------------------battery Charging conditions check---------------------------*/
-	BatteryIndicator batterychargingCheck(checkBatteryTemperature, checkBatteryVoltage, checkBatteryCurrent);
+	BatteryIndicator Batteryindicator(checkBatteryTemperature, checkBatteryVoltage, checkBatteryCurrent);
 	BatteryChargingCheck battery_charging_check;
 	assert(battery_charging_check.batteryRequirements_For_Charging() == true);
 

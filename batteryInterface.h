@@ -16,7 +16,7 @@ class BatterySpecification:public BatteryElements
 public:
 	void BatterySpecificationPrinter();
 };
-class CurrentIndicator :public BatteryElements,public BatterySpecification
+class CurrentIndicator :public BatteryElements
 {
 public:
 	static float currentMinThreshould;
@@ -24,7 +24,7 @@ public:
 	bool currentStatus();
 	
 };
-class VoltageIndicator :public CurrentIndicator
+class VoltageIndicator :public BatteryElements
 {
 public:
 	static float voltageMinThreshould;
@@ -32,7 +32,7 @@ public:
 	bool voltageStatus();
 	
 };
-class TempratureIndicator :public VoltageIndicator
+class TempratureIndicator :public BatteryElements
 {
 public:
 	static float tampratureMinThreshould;
@@ -40,7 +40,7 @@ public:
 	bool tempratureStatus();
 	
 };
-class BatteryIndicator :public TempratureIndicator
+class BatteryIndicator :public TempratureIndicator,public VoltageIndicator,public CurrentIndicator
 {
 public:
 	BatteryIndicator() {}
