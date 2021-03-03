@@ -7,19 +7,19 @@ using namespace std;
 
 void BatterySpecification::BatterySpecificationPrinter()
 {
-	BatteryChargingCheck Batterychargingcheck;
+	
 	cout << "-------------------------------------------------Battery Specification -------------------------------------------------------" << endl;
 	cout << "    || Wheather status || " << "           ||Battery status || " << "                         ||Battery current/voltage||" << endl;
 	cout << "Temp       "    <<"                        B_Tmptr| "<<"low| "<< "full| "<< "actual| "<<   "      C_Min| "<<"C_Max| "<<"Curr_actual| "<<"V_Min| "<<"V_Max| "<<"Volt_actual| "<<endl;
 	cout << wheaterIndicator::todaysTemperature     <<"`C"   << setw(33)   << BatteryElements::temprature            <<"`C"<<"    "  << BatteryChargingCheck::lowBatteryStatus <<"%"<<"   "  
-		 << Batterychargingcheck.fullBatteryStatus <<"%"    <<"   "        << StatusOfCharge::remainBatteryStatus     <<"%" << setw(14) << CurrentIndicator::currentMinThreshould <<"E"
+		 << BatteryChargingCheck::fullBatteryStatus <<"%"    <<"   "        << StatusOfCharge::remainBatteryStatus     <<"%" << setw(14) << CurrentIndicator::currentMinThreshould <<"E"
 		 << "   "  << CurrentIndicator::currentMaxThreshould <<"E"<<"      "<< BatteryElements::current                <<"E"<< setw(9) 
 		 << VoltageIndicator::voltageMinThreshould  <<"V"    << setw(7)     << VoltageIndicator::vOltageMaxThreshould <<"V" <<"      "<< BatteryElements::voltage               <<"V"<<endl;
 }
 
 bool CurrentIndicator::currentStatus()
 {
-	if(currentMinThreshould >= current || currentMaxThreshould <=current)
+	if(currentMinThreshould >= BatteryElements::current || currentMaxThreshould <= BatteryElements::current)
 		{
 			cout << "Charge current Rate out of range!\n";
 			return false;
@@ -33,7 +33,7 @@ bool CurrentIndicator::currentStatus()
 bool VoltageIndicator::voltageStatus()
 {
 	CurrentIndicator Currentindicator;
-	if (voltageMinThreshould >= voltage || vOltageMaxThreshould <= voltage)
+	if (voltageMinThreshould >= BatteryElements::voltage || vOltageMaxThreshould <= BatteryElements::voltage)
 		{
 			cout << "Charge voltage Rate out of range!\n";
 			return false;
@@ -47,7 +47,7 @@ bool VoltageIndicator::voltageStatus()
 bool TempratureIndicator::tempratureStatus()
 {
 	VoltageIndicator Voltageindicator;
-	if (tampratureMinThreshould >= temprature || temperatureMaxThreshould <= temprature)
+	if (tampratureMinThreshould >= BatteryElements::temprature || temperatureMaxThreshould <= BatteryElements::temprature)
 		{
 			cout << "Charge tamperature of battery out of range!\n";
 			return false;
@@ -67,6 +67,7 @@ BatteryIndicator::BatteryIndicator(float temp, float vol, float curr)
 
 bool wheaterIndicator::wheatherStatus()
 {
+	TempratureIndicator Tempratureindicator;
 	if (hotWeather < todaysTemperature)
 	{
 		cout << "Very High Temperature!! charge is not allowed !" << endl;
@@ -77,7 +78,7 @@ bool wheaterIndicator::wheatherStatus()
 		cout << "Very Low Temperature!! charge is not allowed !" << endl;
 		return false;
 	}
-	return tempratureStatus();
+	return Tempratureindicator.tempratureStatus();
 }
 
 void wheaterIndicator::TodaysTemperature(float temp)
@@ -93,13 +94,11 @@ bool BatteryChargingCheck::batteryRequirements_For_Charging()
 		{
 		Batteryspec.BatterySpecificationPrinter();
 			return true;
-
 		}
 	else
 		{
 			return false;
 		}
-	
 }
 
 bool StatusOfCharge::StatusOfBatteryCharge(float remainBatteryStatus)
